@@ -1,0 +1,9 @@
+<div class="thumbnail thumbnail-mod-2">
+    {% if project.image %}
+        <img src="{{ project.image.url }}" alt="">
+    {% endif %}
+    <div class="caption-mod-1">
+        <h4 class="text-success-custom"> {{ project.title }}</h4>
+        <p>{{ project.description }}</p>
+    </div>
+</div>

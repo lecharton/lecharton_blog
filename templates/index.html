@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+        <section class="section section-inset-2">
+          <div class="container">
+            <h2>Блог</h2>
+            <hr>
+            <div class="row row-55 clearleft-custom">
+              {% for post in post_list %}
+                {% include "includes/post_item.html" with post=post %}
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+        <section class="section bg-accent">
+          <div class="container">
+            <h2>Проекты</h2>
+            <hr>
+            <div class="row clearleft-custom-1 row-55">
+              {% for project in project_list %}
+                <div class="col-12 col-md-6 col-xl-4">
+                  {% include "includes/project_item.html" with project=project %}
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+{% endblock %}

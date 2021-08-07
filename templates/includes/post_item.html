@@ -1,0 +1,22 @@
+                <div class="col-12 col-md-6">
+                  <div class="blog-post thumbnail">
+                    {% if post.image %}
+                      <img src="{{ post.image.url }}" alt="">
+                    {% endif %}
+                    <div class="caption-mod-1">
+                      <div class="blog-post-time">
+                        <time datetime='{{ post.pub_date|date:"Y-M-d" }}'>{{ post.pub_date|date:"M d, Y" }} &nbsp;</time>
+                      </div>
+                      <div class="blog-post-title">
+                        <h4 class="text-success-custom"><a href="{% url 'post' post.slug %}">{{ post.title }}</a></h4>
+                      </div>
+                      <div class="blog-post-body text-md-left">
+                        <p>{{ post.description }}</p>
+                      </div>
+                      <div class="blog-post-footer">
+                        {% include "includes/tags.html" with tags=post.tags.all %}
+<!--                        <div class="badge pull-lg-right"><a class="text-gray" href="blog_post.html">43 Comments</a></div>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>

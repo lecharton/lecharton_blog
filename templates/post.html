@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block content %}
+        <div class="section section-inset-1">
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-lg-8">
+                <section class="section-inset-2">
+                  <h2>{{ post.title }}</h2>
+                  <hr>
+                  <div class="blog-post">
+                    <div class="blog-post-time">
+                      <time datetime='{{ post.pub_date|date:"Y-M-d" }}'>{{ post.pub_date|date:"M d, Y" }} &nbsp;</time>
+                    </div>
+                    <div class="thumbnail">
+                      <div class="caption-mod-2 text-md-left">
+                      {{ post.text|safe }}
+                      </div>
+                    </div>
+
+                    <div class="blog-post-footer">
+                      {% include "includes/tags.html" with tags=post.tags.all %}
+                      <div class="badge pull-lg-right offset-custom-3"><span>Поделитесь постом</span>
+                        <ul class="list-inline">
+                          <li><a class="fa-facebook" href="#"></a></li>
+                          <li><a class="fa-twitter" href="#"></a></li>
+                          <li><a class="fa-pinterest-p" href="#"></a></li>
+                          <li><a class="fa-vimeo" href="#"></a></li>
+                          <li><a class="fa-google" href="#"></a></li>
+                          <li><a class="fa-rss" href="#"></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <section class="section-inset-2">
+                  <hr>
+                  <div class="row row-45">
+                    {% for post in related_posts %}
+                      {% include "includes/post_item.html" with post=post %}
+                    {% endfor %}
+                  </div>
+                </section>
+              </div>
+              <div class="col-12 col-lg-4 blog-sidebar">
+                <div class="sidebar-module sidebar-module-inset-1">
+                  <h4>Новые посты</h4>
+                  <ul class="list-unstyled text-lg-left">
+                    {% for post in new_posts %}
+                      <li>
+                        <h6><a class="text-success-custom" href="{% url 'post' post.slug %}">{{ post.title }}</a></h6>
+                        <div class="blog-post-time">
+                            <time datetime='{{ post.pub_date|date:"Y-M-d" }}'>{{ post.pub_date|date:"M d, Y" }}</time>
+                        </div>
+                        </li>
+                      {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
