@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-us(nqvhzdcr!2em=-rjm(&l7y63930(r&st@ic!m1wxce=!6oy')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['lecharton-blog.herokuapp.com', '127.0.0.1']
 
@@ -66,14 +66,15 @@ WSGI_APPLICATION = 'lecharton.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 DATABASES = {}
 if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': os.getenv('BLOG_DB_NAME', 'lecharton_blog'),
-            'USER': os.getenv('BLOG_DB_USR', 'lecharton_blog'),
-            'PASSWORD': os.getenv('BLOG_DB_PWD', 'lecharton_blog'),
-        }
-    }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #         'NAME': os.getenv('BLOG_DB_NAME', 'lecharton_blog'),
+    #         'USER': os.getenv('BLOG_DB_USR', 'lecharton_blog'),
+    #         'PASSWORD': os.getenv('BLOG_DB_PWD', 'lecharton_blog'),
+    #     }
+    # }
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 else:
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
@@ -103,13 +104,13 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-if DEBUG:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static')
-    ]
+# if DEBUG:
+#     STATICFILES_DIRS = [
+#         os.path.join(BASE_DIR, 'static')
+#     ]
 
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# else:
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
