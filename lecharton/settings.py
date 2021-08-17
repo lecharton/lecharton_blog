@@ -63,12 +63,17 @@ WSGI_APPLICATION = 'lecharton.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': os.getenv('BLOG_DB_NAME', 'lecharton_blog'),
+            'USER': os.getenv('BLOG_DB_USR', 'lecharton_blog'),
+            'PASSWORD': os.getenv('BLOG_DB_PWD', 'lecharton_blog'),
+        }
     }
-}
+else:
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
