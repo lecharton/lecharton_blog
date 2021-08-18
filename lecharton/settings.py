@@ -4,7 +4,8 @@ import django_heroku
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-us(nqvhzdcr!2em=-rjm(&l7y63930(r&st@ic!m1wxce=!6oy')
@@ -31,6 +32,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,18 +67,18 @@ WSGI_APPLICATION = 'lecharton.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 DATABASES = {}
-if DEBUG:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #         'NAME': os.getenv('BLOG_DB_NAME', 'lecharton_blog'),
-    #         'USER': os.getenv('BLOG_DB_USR', 'lecharton_blog'),
-    #         'PASSWORD': os.getenv('BLOG_DB_PWD', 'lecharton_blog'),
-    #     }
-    # }
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-else:
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# if DEBUG:
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv('BLOG_DB_NAME', 'lecharton_blog'),
+#         'USER': os.getenv('BLOG_DB_USR', 'lecharton_blog'),
+#         'PASSWORD': os.getenv('BLOG_DB_PWD', 'lecharton_blog'),
+#     }
+# }
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+# else:
+#     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -110,7 +112,13 @@ STATIC_URL = '/static/'
 #     ]
 
 # else:
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
