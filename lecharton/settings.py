@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-us(nqvhzdcr!2em=-rjm(&l7y63930(r&st@ic!m1wxce=!6oy')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['lecharton-blog.herokuapp.com', '127.0.0.1']
 
@@ -66,19 +66,15 @@ WSGI_APPLICATION = 'lecharton.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-DATABASES = {}
-# if DEBUG:
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': os.getenv('BLOG_DB_NAME', 'lecharton_blog'),
-#         'USER': os.getenv('BLOG_DB_USR', 'lecharton_blog'),
-#         'PASSWORD': os.getenv('BLOG_DB_PWD', 'lecharton_blog'),
-#     }
-# }
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-# else:
-#     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.getenv('DB_NAME', 'lecharton_blog'),
+        'USER': os.getenv('DB_USER', 'lecharton_blog'),
+        'PASSWORD': os.getenv('DB_PWD', 'lecharton_blog'),
+    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -106,14 +102,12 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-# if DEBUG:
-#     STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR, 'static')
-#     ]
-
-# else:
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if DEBUG:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
@@ -128,5 +122,3 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-django_heroku.settings(locals())
