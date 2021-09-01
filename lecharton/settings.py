@@ -6,10 +6,10 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-us(nqvhzdcr!2em=-rjm(&l7y63930(r&st@ic!m1wxce=!6oy')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DJANGO_DEBUG', False)
 
 ALLOWED_HOSTS = ['134.122.56.235', '127.0.0.1']
 
@@ -68,9 +68,9 @@ WSGI_APPLICATION = 'lecharton.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv('DB_NAME', 'lecharton_blog'),
-        'USER': os.getenv('DB_USER', 'lecharton_blog'),
-        'PASSWORD': os.getenv('DB_PWD', 'lecharton_blog'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PWD'),
     }
 }
 
