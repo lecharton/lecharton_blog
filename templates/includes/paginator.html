@@ -1,6 +1,6 @@
     <ul class="pagination pagination-center">
         {% if items.has_previous %}
-            <li><a href="#"></a></li>
+            <li><a href="?page={{ items.previous_page_number }}"></a></li>
         {% else %}
             <li class="disabled"><a href="#"></a></li>
         {% endif %}
@@ -8,11 +8,11 @@
             {% if items.number == i %}
                 <li class="active"><a href="#">{{ i }}</a></li>
             {% else %}
-                <li><a href="#">{{ i }}</a></li>
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
             {% endif %}
         {% endfor %}
         {% if items.has_next %}
-            <li><a href="#"></a></li>
+            <li><a href="?page={{ items.next_page_number }}"></a></li>
         {% else %}
             <li class="disabled"><a href="#"></a></li>
         {% endif %}
