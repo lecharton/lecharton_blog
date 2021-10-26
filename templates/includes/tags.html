@@ -1,5 +1,5 @@
 <div class="tags pull-lg-left">
   {% for tag in tags %}
-    <a class="post-tags" href="#">{{ tag.title }}</a>
+    <a class="post-tags" href="{% url 'tag' tag.slug %}">{{ tag.title }}</a>
   {% endfor %}
 </div>

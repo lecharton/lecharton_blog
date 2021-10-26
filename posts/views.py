@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render
 
-from .models import Post
+from .models import Post, Tag
 from projects.models import Project
 
 # @cache_page(20, key_prefix='index_page')
@@ -28,7 +28,25 @@ def blog(request):
     return render(
         request,
         'blog.html',
-        {'page': page}
+        {'page': page, 'title': 'Блог'}
+    )
+
+
+def posts_by_tag(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+
+    post_list = tag.posts.all()
+    paginator = Paginator(post_list, 10)
+    page_number = request.GET.get('page')
+    page = paginator.get_page(page_number)
+
+    return render(
+        request,
+        'blog.html',
+        {
+            'title': tag.title,
+            'page': page
+        }
     )
 
 def post_detail(request, slug):
