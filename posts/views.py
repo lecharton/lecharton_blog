@@ -30,8 +30,8 @@ def blog(request):
         'blog.html',
         {
             'page': page,
-            'title': 'Блог',
-            'seo_title': 'Блог девушки-программиста',
+            'main_title': 'Блог',
+            'seo_title': 'Блог девушки-программистки',
             'seo_description': 'Блог о программировании: IT новости, советы новичкам, туториалы по Python и немного простой программерской жизни.',
         }
     )
@@ -49,7 +49,7 @@ def posts_by_tag(request, slug):
         request,
         'blog.html',
         {
-            'title': tag.title,
+            'main_title': tag.title,
             'seo_title': tag.seo_title,
             'seo_description': tag.seo_description,
             'page': page,

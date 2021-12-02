@@ -9,5 +9,5 @@ def projects(request):
     return render(
         request,
         'projects.html',
-        {'projects': projects}
+        {'projects': projects, 'main_title': 'Проекты',}
     )
