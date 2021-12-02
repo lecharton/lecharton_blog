@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block seo_content %}
+  <meta name="description" content="{{ post.seo_title }}">
+  <meta name="keywords" content="{{ post.seo_description }}">
+{% endblock %}
+
 {% block content %}
         <div class="section section-inset-1">
           <div class="container">

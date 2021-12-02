@@ -28,7 +28,12 @@ def blog(request):
     return render(
         request,
         'blog.html',
-        {'page': page, 'title': 'Блог'}
+        {
+            'page': page,
+            'title': 'Блог',
+            'seo_title': 'Блог девушки-программиста',
+            'seo_description': 'Блог о программировании: IT новости, советы новичкам, туториалы по Python и немного простой программерской жизни.',
+        }
     )
 
 
@@ -45,7 +50,9 @@ def posts_by_tag(request, slug):
         'blog.html',
         {
             'title': tag.title,
-            'page': page
+            'seo_title': tag.seo_title,
+            'seo_description': tag.seo_description,
+            'page': page,
         }
     )
 

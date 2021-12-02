@@ -9,6 +9,18 @@ class Tag(models.Model):
     slug = models.SlugField(
         max_length=200, null=True, verbose_name='Слаг', unique=True
     )
+    seo_title = models.TextField(
+        verbose_name='meta description',
+        help_text='SEO заголовок',
+        null=True,
+        blank=True
+    )
+    seo_description = models.TextField(
+        verbose_name='meta keywords',
+        help_text='Краткое SEO описание',
+        null=True,
+        blank=True
+    )
 
     class Meta:
         ordering = ['id']
@@ -34,6 +46,18 @@ class Post(models.Model):
     text = models.TextField(
         verbose_name='Текст',
         help_text='Текст'
+    )
+    seo_title = models.TextField(
+        verbose_name='meta description',
+        help_text='SEO заголовок',
+        null=True,
+        blank=True
+    )
+    seo_description = models.TextField(
+        verbose_name='meta keywords',
+        help_text='Краткое SEO описание',
+        null=True,
+        blank=True
     )
     add_date = models.DateTimeField('date published', auto_now_add=True)
     is_pub = models.BooleanField(default=False)
