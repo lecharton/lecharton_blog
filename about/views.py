@@ -1,9 +1,15 @@
-from django.views.generic.base import TemplateView
+from django.shortcuts import render
 
 
-class AboutAuthorView(TemplateView):
-    template_name = 'about.html'
+from .models import Links, AdditionalLinks
 
 
-class AboutContactView(TemplateView):
-    template_name = 'contact.html'
+def links(request):
+    links = Links.objects.all()
+    additional_links = AdditionalLinks.objects.all()
+
+    return render(
+        request,
+        'taplink.html',
+        { 'links': links, 'additional_links': additional_links }
+    )
