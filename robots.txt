@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /admin/
+
+User-agent: AdsBot-Google
+Disallow: /admin/
+
+Sitemap: http://lecharton.ru/sitemap.xml
