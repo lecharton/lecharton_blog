@@ -95,31 +95,20 @@
       </header>
       <!-- Page Content-->
       <main class="page-content">
-          <section class="section section-inset-1">
+        <section class="section">
           <div class="container">
-            <div class="row row-45">
-              <div class="col-12 col-md-12 col-lg-6 text-center">
-                  <img class="rounded-circle" src="{% static 'images/me.jpg' %}" alt="">
-                  <div class="caption-mod-1">
-                    <h4>@lecharton</h4>
-                  </div>
-              </div>
-              <div class="col-12 col-md-12 col-lg-6 text-md-left well2">
-                <p> Я родилась в Сургуте. С детства часто переезжала с семьей по России. Жила в Саратове, Москве, маленьком городе рядом с Казанью и много где еще. В 2016 году я переехала с семьей в Нидерланды и сейчас живу в Амстердаме.</p>
-                <div class="row row-45 offset-custom-2">
-                  {% for link in links %}
-                    <div class="col-12 col-md-6">
-                      <div class="media flex-column flex-md-row thumbnail-mod-1 media-mod-1">
-                        <div class="media-left"><span class="icon icon-success icon-sm {{ link.icon }}"></span></div>
-                        <div class="media-body">
-                          <h6 class="text-transform-none"><a href="{{ link.url }}">{{ link.title }}</a></h6>
-                          <p>{{ link.description }}</p>
-                        </div>
-                      </div>
+            <div class="row text-md-left row-55">
+              {% for link in links %}
+                <div class="col-12 col-md-6 col-xl-4">
+                  <div class="media flex-column flex-md-row thumbnail-mod-2">
+                    <div class="media-left"><span class="icon icon-success icon-sm {{ link.icon }}"></span></div>
+                    <div class="media-body">
+                      <h6 class="text-transform-none"><a href="{{ link.url }}">{{ link.title }}</a></h6>
+                      <p>{{ link.description }}</p>
                     </div>
-                  {% endfor %}
+                  </div>
                 </div>
-              </div>
+              {% endfor %}
             </div>
           </div>
         </section>
@@ -131,7 +120,7 @@
                   <div class="media flex-column flex-md-row thumbnail-mod-2">
                     <div class="media-left"><span class="icon icon-success icon-sm {{ add_link.icon }}"></span></div>
                     <div class="media-body">
-                      <h6 class="text-transform-none"><a href="#">{{ add_link.title }}</a></h6>
+                      <h6 class="text-transform-none"><a href="{{ add_link.url }}">{{ add_link.title }}</a></h6>
                       <p>{{ add_link.description }}</p>
                     </div>
                   </div>

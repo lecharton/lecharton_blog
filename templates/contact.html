@@ -1,46 +1,49 @@
 {% extends 'base.html' %}
+{% block seo_content %}
+  <meta name="description" content="Екатерина Гришина - бэкенд разработчик">
+  <meta name="keywords" content="11 лет опыта в программировании. Пишу на Python, Java и Perl.">
+{% endblock %}
 {% block content %}
         <section class="section section-inset-1">
           <div class="container">
-            <h2>Контакты</h2>
-            <hr>
             <div class="row justify-content-center">
               <div class="col-12 col-lg-8">
                 <!-- RD Mailform-->
-                <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="forms" method="post" action="bat/rd-mailform.php">
+                <form class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="forms" method="post" action="{% url 'contact' %}">
+                  {% csrf_token %}
                   <div class="row row-10">
                     <div class="col-12 col-md-6">
                       <div class="form-wrap">
-                        <label class="form-label" for="forms-name">Your first name...</label>
+                        <label class="form-label" for="forms-name">Имя</label>
                         <input class="form-input" id="forms-name" type="text" name="name" data-constraints="@Required">
                       </div>
                     </div>
                     <div class="col-12 col-md-6">
                       <div class="form-wrap">
-                        <label class="form-label" for="forms-last-name">Your last name...</label>
-                        <input class="form-input" id="forms-last-name" type="text" name="last-name" data-constraints="@Required">
+                        <label class="form-label" for="forms-last-name">Фамилия</label>
+                        <input class="form-input" id="forms-last-name" type="text" name="surname">
                       </div>
                     </div>
                     <div class="col-12 col-md-6">
                       <div class="form-wrap">
-                        <label class="form-label" for="forms-email">Your e-mail...</label>
+                        <label class="form-label" for="forms-email">e-mail</label>
                         <input class="form-input" id="forms-email" type="email" name="email" data-constraints="@Email @Required">
                       </div>
                     </div>
                     <div class="col-12 col-md-6">
                       <div class="form-wrap">
-                        <label class="form-label" for="forms-phone">Your phone...</label>
-                        <input class="form-input" id="forms-phone" type="text" name="phone" data-constraints="@PhoneNumber @Required">
+                        <label class="form-label" for="forms-cv_url">Ссылка на ваше резюме</label>
+                        <input class="form-input" id="forms-cv_url" type="text" name="cv_url">
                       </div>
                     </div>
                     <div class="col-12 col-md-12">
                       <div class="form-wrap">
-                        <label class="form-label" for="forms-message">Message:</label>
-                        <textarea class="form-input" id="forms-message" name="message" data-constraints="@Required"></textarea>
+                        <label class="form-label" for="forms-message">Текст сообщения</label>
+                        <textarea class="form-input" id="forms-message" name="description" data-constraints="@Required"></textarea>
                       </div>
                     </div>
                     <div class="col-12 text-center">
-                      <button class="btn btn-success btn-sm" type="submit">Send Message</button>
+                      <button class="btn btn-success btn-sm" type="submit">Отправить</button>
                     </div>
                   </div>
                 </form>

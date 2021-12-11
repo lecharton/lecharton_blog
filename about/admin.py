@@ -1,8 +1,14 @@
 from django.contrib import admin
 
 from .models import (
-    Links, AdditionalLinks
+    Links, AdditionalLinks, Application
 )
+
+
+class ApplicationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'surname', 'type')
+    search_fields = ('name', 'surname')
+    filter = ('type',)
 
 
 class LinksAdmin(admin.ModelAdmin):
@@ -17,5 +23,6 @@ class AdditionalLinksAdmin(admin.ModelAdmin):
     filter = ('is_pub',)
 
 
+admin.site.register(Application, ApplicationAdmin)
 admin.site.register(Links, LinksAdmin)
 admin.site.register(AdditionalLinks, AdditionalLinksAdmin)

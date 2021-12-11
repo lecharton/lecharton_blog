@@ -6,6 +6,6 @@ urlpatterns = [
     # path('about/', views.AboutAuthorView.as_view(), name='about'),
     # path('contact/', views.AboutContactView.as_view(), name='contact'),
     path('about/', TemplateView.as_view(template_name="about.html"), name='about'),
-    path('contact/', TemplateView.as_view(template_name="contact.html"), name='contact'),
+    path('contact/', views.contact, name='contact'),
     path('taplink/', views.links, name='taplink'),
 ]
